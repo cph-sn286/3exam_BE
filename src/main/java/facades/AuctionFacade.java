@@ -38,6 +38,21 @@ public class AuctionFacade {
         return new AuctionDTO(auction);
     }
 
+    public AuctionDTO updateAuction(AuctionDTO pn) {
+        EntityManager em = emf.createEntityManager();
+        Auction a = (em.find(Auction.class, pn.getId()));
+        try {
+            a.setName(pn.getName()); a.setDate(pn.getDate()); a.setTime(pn.getTime());a.setLocation(pn.getLocation());
+            em.getTransaction().begin();
+            a = em.merge(a);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new AuctionDTO(a);
+
+    }
+
     public static AuctionFacade getFacadeExample(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;

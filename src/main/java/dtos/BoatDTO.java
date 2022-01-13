@@ -51,6 +51,7 @@ public class BoatDTO {
         this.year = year;
     }
 
+
     public long getId() {
         return id;
     }

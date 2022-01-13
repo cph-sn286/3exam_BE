@@ -3,7 +3,9 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dtos.AuctionDTO;
 import dtos.BoatDTO;
+import entities.Auction;
 import entities.Boat;
 import entities.Role;
 import entities.User;
@@ -115,6 +117,36 @@ class BoatRessourceTest {
 
     }
 
+    @Test
+    void updateBoat () {
+        BoatDTO boatDTO = new BoatDTO("dasdasd", "dqweqw", "eqeqw", 2017);
+        login("user", "test");
+        given()
+                .contentType(ContentType.JSON).header("x-access-token", securityToken)
+                .body(GSON.toJson(boatDTO))
+                .put("/boat/{id}")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode());
+
+
+    }
+
+    @Test
+    void createAuction() {
+        AuctionDTO auctionDTO = new AuctionDTO("auctionName", "auctionDate", "auctionTime", "auctionLocation");
+
+        login("admin", "test");
+        given()
+                .contentType(ContentType.JSON).header("x-access-token", securityToken)
+                .body(GSON.toJson(auctionDTO))
+                .post("/auction/createauction")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode());
+
+
+    }
     @Test
     void createBoat() {
         BoatDTO boatDTO = new BoatDTO("boatbrand", "supermakebåd", "minbåd", 23);

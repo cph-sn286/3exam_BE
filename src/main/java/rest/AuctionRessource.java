@@ -43,7 +43,18 @@ public class AuctionRessource {
     public Response createAuction(AuctionDTO auctionDTO) {
         auctionDTO = FACADE.createAuction(auctionDTO);
         return Response.ok().entity(GSON.toJson(auctionDTO)).build();
+    }
 
+    @PUT
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+   // @RolesAllowed("user")
+    public Response updateAuction(@PathParam("id") Long id, String a) {
+        AuctionDTO auctionDto = GSON.fromJson(a, AuctionDTO.class);
+        auctionDto.setId(id);
+        AuctionDTO result = FACADE.updateAuction(auctionDto);
+        return Response.ok().entity(GSON.toJson(result)).build();
     }
 
 
