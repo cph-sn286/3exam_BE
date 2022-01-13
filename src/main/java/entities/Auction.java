@@ -1,13 +1,16 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 @Entity
-public class Auction {
+@NamedQuery(name = "Auction.deleteAllRows", query = "DELETE from Auction ")
+public class Auction implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String date;

@@ -39,9 +39,9 @@ public class AuctionRessource {
     @Path("createauction")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-   // @RolesAllowed("user")
+    @RolesAllowed("admin")
     public Response createAuction(AuctionDTO auctionDTO) {
-        auctionDTO = FACADE.create(auctionDTO);
+        auctionDTO = FACADE.createAuction(auctionDTO);
         return Response.ok().entity(GSON.toJson(auctionDTO)).build();
 
     }

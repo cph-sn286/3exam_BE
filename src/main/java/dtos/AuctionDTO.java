@@ -23,6 +23,9 @@ public class AuctionDTO {
     this.location = rm.getLocation();
     }
 
+    public AuctionDTO() {
+    }
+
     public long getId() {
         return id;
     }

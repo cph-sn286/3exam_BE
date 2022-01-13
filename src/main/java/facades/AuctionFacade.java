@@ -25,7 +25,7 @@ public class AuctionFacade {
         return AuctionDTO.getDtos(rms);
     }
 
-    public AuctionDTO create(AuctionDTO pn) {
+    public AuctionDTO createAuction(AuctionDTO pn) {
         Auction auction = new Auction(pn.getName(), pn.getDate(), pn.getTime(),pn.getLocation());
         EntityManager em = emf.createEntityManager();
         try {
