@@ -26,25 +26,25 @@ public class BoatFacade {
     }
 
 
-    public List<BoatDTO> getBoatByHarbour(String name) {
-        EntityManager em = emf.createEntityManager();
-        TypedQuery<Boat> query = em.createQuery("SELECT  p FROM Boat p INNER JOIN p.harbour h WHERE h.name = :name", Boat.class);
-        query.setParameter("name", name);
-        List<Boat> rms = query.getResultList();
-        return BoatDTO.getDtos(rms);
-    }
+   // public List<BoatDTO> getBoatByHarbour(String name) {
+     //   EntityManager em = emf.createEntityManager();
+       // TypedQuery<Boat> query = em.createQuery("SELECT  p FROM Boat p INNER JOIN p.harbour h WHERE h.name = :name", Boat.class);
+        //query.setParameter("name", name);
+        //List<Boat> rms = query.getResultList();
+        //return BoatDTO.getDtos(rms);
+   // }
 
-    public List<OwnerDTO> getOwnersByBoat(String name) {
-        EntityManager em = emf.createEntityManager();
-        TypedQuery<Owner> query = em.createQuery("SELECT  p FROM Owner p INNER JOIN p.boatList h WHERE h.name = :name", Owner.class);
-        query.setParameter("name", name);
-        List<Owner> rms = query.getResultList();
-        return OwnerDTO.getDtos(rms);
-    }
+    //public List<OwnerDTO> getOwnersByBoat(String name) {
+      //  EntityManager em = emf.createEntityManager();
+        //TypedQuery<Owner> query = em.createQuery("SELECT  p FROM Owner p INNER JOIN p.boatList h WHERE h.name = :name", Owner.class);
+        //query.setParameter("name", name);
+        //List<Owner> rms = query.getResultList();
+        //return OwnerDTO.getDtos(rms);
+    //}
 
     public BoatDTO create(BoatDTO pn) {
         Boat boat =
-                new Boat(pn.getBrand(), pn.getMake(), pn.getName());
+                new Boat(pn.getBrand(), pn.getMake(), pn.getName(),pn.getYear());
 
         EntityManager em = emf.createEntityManager();
         try {

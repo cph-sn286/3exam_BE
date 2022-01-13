@@ -10,8 +10,9 @@ public class Auction {
     @Id
     private long id;
     private String name;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
+    private String location;
 
     @OneToMany(mappedBy = "auction")
     private List<Boat> boatList;
@@ -19,11 +20,44 @@ public class Auction {
     public Auction() {
     }
 
-    public Auction(long id, String name, Date date, Time time) {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public List<Boat> getBoatList() {
+        return boatList;
+    }
+
+    public void setBoatList(List<Boat> boatList) {
+        this.boatList = boatList;
+    }
+
+    public Auction(long id, String name, String date, String time, String location) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
+        this.location = location;
     }
 
     public long getId() {
@@ -42,19 +76,5 @@ public class Auction {
         this.name = name;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
 }

@@ -30,21 +30,21 @@ public class BoatRessource {
             return "{\"msg\":\"Hello World\"}";
         }
 
-    @GET
-    @Path("getboatbyharbour/{name}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response getBoatByHarbour(@PathParam("name") String name) {
-        List<BoatDTO> rn = FACADE.getBoatByHarbour(name);
-        return Response.ok().entity(GSON.toJson(rn)).build();
-    }
+    //@GET
+    //@Path("getboatbyharbour/{name}")
+    //@Produces({MediaType.APPLICATION_JSON})
+    //public Response getBoatByHarbour(@PathParam("name") String name) {
+        //List<BoatDTO> rn = FACADE.getBoatByHarbour(name);
+      //  return Response.ok().entity(GSON.toJson(rn)).build();
+    //}
 
-    @GET
-    @Path("getownersbyboat/{name}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public Response getOwnersByBoat(@PathParam("name") String name) {
-        List<OwnerDTO> rn = FACADE.getOwnersByBoat(name);
-        return Response.ok().entity(GSON.toJson(rn)).build();
-    }
+    //@GET
+    //@Path("getownersbyboat/{name}")
+    //@Produces({MediaType.APPLICATION_JSON})
+    //public Response getOwnersByBoat(@PathParam("name") String name) {
+       // List<OwnerDTO> rn = FACADE.getOwnersByBoat(name);
+     //   return Response.ok().entity(GSON.toJson(rn)).build();
+   // }
 
     @POST
     @Path("createboat")

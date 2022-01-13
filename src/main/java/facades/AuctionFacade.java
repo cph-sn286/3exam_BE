@@ -1,6 +1,6 @@
 package facades;
 
-import dtos.HarbourDTO;
+import dtos.AuctionDTO;
 import entities.Auction;
 
 import javax.persistence.EntityManager;
@@ -8,25 +8,25 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class HarbourFacade {
+public class AuctionFacade {
 
-    public HarbourFacade() {
+    public AuctionFacade() {
     }
 
-    private static HarbourFacade instance;
+    private static AuctionFacade instance;
     private static EntityManagerFactory emf;
 
-    public List<HarbourDTO> getAll() {
+    public List<AuctionDTO> getAll() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Auction> query = em.createQuery("SELECT p FROM Auction p", Auction.class);
         List<Auction> rms = query.getResultList();
-        return HarbourDTO.getDtos(rms);
+        return AuctionDTO.getDtos(rms);
     }
 
-    public static HarbourFacade getFacadeExample(EntityManagerFactory _emf) {
+    public static AuctionFacade getFacadeExample(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new HarbourFacade();
+            instance = new AuctionFacade();
         }
         return instance;
     }

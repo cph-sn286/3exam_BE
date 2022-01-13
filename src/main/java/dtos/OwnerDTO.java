@@ -9,14 +9,14 @@ import java.util.List;
 public class OwnerDTO {
     private long id;
     private String name;
-    private String address;
+    private String email;
     private String phone;
 
 
     public OwnerDTO(Owner rm) {
     this.id = rm.getId();
     this.name = rm.getName();
-    this.address = rm.getAddress();
+    this.email = rm.getEmail();
     this.phone = rm.getPhone();
     }
 
