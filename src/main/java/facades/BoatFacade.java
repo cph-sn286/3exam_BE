@@ -1,7 +1,9 @@
 package facades;
 
+import dtos.AuctionDTO;
 import dtos.BoatDTO;
 import dtos.OwnerDTO;
+import entities.Auction;
 import entities.Boat;
 import entities.Owner;
 
@@ -11,7 +13,6 @@ import javax.persistence.TypedQuery;
 import javax.ws.rs.WebApplicationException;
 import java.util.List;
 
-import static jdk.internal.org.jline.utils.Colors.h;
 
 public class BoatFacade {
     public BoatFacade() {
@@ -55,9 +56,10 @@ public class BoatFacade {
     }
 
     public BoatDTO updateBoat(BoatDTO pn) {
-        Boat b = new Boat(pn.getId(), pn.getName(), pn.getBrand(), pn.getMake(),pn.getYear());
         EntityManager em = emf.createEntityManager();
+        Boat b = (em.find(Boat.class, pn.getId()));
         try {
+            b.setName(pn.getName()); b.setBrand(pn.getBrand()); b.setMake(pn.getMake());b.setYear(pn.getYear());
             em.getTransaction().begin();
             b = em.merge(b);
             em.getTransaction().commit();
@@ -66,5 +68,12 @@ public class BoatFacade {
         }
         return new BoatDTO(b);
 
+    }
+
+    public List<BoatDTO> getAll() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Boat> query = em.createQuery("SELECT p FROM Boat p", Boat.class);
+        List<Boat> rms = query.getResultList();
+        return BoatDTO.getDtos(rms);
     }
 }

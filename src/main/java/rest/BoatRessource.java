@@ -30,7 +30,13 @@ public class BoatRessource {
             return "{\"msg\":\"Hello World\"}";
         }
 
-
+    @GET
+    @Path("all")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getAll() {
+        List<BoatDTO> rns = FACADE.getAll();
+        return Response.ok().entity(GSON.toJson(rns)).build();
+    }
 
     @GET
     @Path("getboatbyowner/{name}")
