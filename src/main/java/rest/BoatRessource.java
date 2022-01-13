@@ -38,13 +38,14 @@ public class BoatRessource {
       //  return Response.ok().entity(GSON.toJson(rn)).build();
     //}
 
-    //@GET
-    //@Path("getownersbyboat/{name}")
-    //@Produces({MediaType.APPLICATION_JSON})
-    //public Response getOwnersByBoat(@PathParam("name") String name) {
-       // List<OwnerDTO> rn = FACADE.getOwnersByBoat(name);
-     //   return Response.ok().entity(GSON.toJson(rn)).build();
-   // }
+    @GET
+    @Path("getboatbyowner/{name}")
+    @Produces({MediaType.APPLICATION_JSON})
+    @RolesAllowed("user")
+    public Response getBoatByOwner(@PathParam("name") String name) {
+        List<BoatDTO> rn = FACADE.getBoatByOwner(name);
+        return Response.ok().entity(GSON.toJson(rn)).build();
+    }
 
     @POST
     @Path("createboat")
