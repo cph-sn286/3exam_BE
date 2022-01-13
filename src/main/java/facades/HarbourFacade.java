@@ -1,9 +1,7 @@
 package facades;
 
 import dtos.HarbourDTO;
-import dtos.OwnerDTO;
-import entities.Harbour;
-import entities.Owner;
+import entities.Auction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,8 +18,8 @@ public class HarbourFacade {
 
     public List<HarbourDTO> getAll() {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Harbour> query = em.createQuery("SELECT p FROM Harbour p", Harbour.class);
-        List<Harbour> rms = query.getResultList();
+        TypedQuery<Auction> query = em.createQuery("SELECT p FROM Auction p", Auction.class);
+        List<Auction> rms = query.getResultList();
         return HarbourDTO.getDtos(rms);
     }
 

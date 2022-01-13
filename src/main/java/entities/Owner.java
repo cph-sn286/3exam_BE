@@ -11,7 +11,6 @@ public class Owner {
     @Id
     private long id;
     private String name;
-    private String address;
     private String phone;
 
     public Owner() {
@@ -20,10 +19,9 @@ public class Owner {
     @ManyToMany()
     private List<Boat> boatList = new ArrayList<>();
 
-    public Owner(long id, String name, String address, String phone) {
+    public Owner(long id, String name, String phone) {
         this.id = id;
         this.name = name;
-        this.address = address;
         this.phone = phone;
     }
 
@@ -41,14 +39,6 @@ public class Owner {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {

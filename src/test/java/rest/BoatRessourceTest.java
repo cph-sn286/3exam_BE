@@ -73,8 +73,8 @@ class BoatRessourceTest {
     void setUp() {
 
         EntityManager em = emf.createEntityManager();
-        b1 = new Boat("bådbrand", "noget", "sejl");
-        b2 = new Boat("bådgatti", "andet", "torsk");
+        b1 = new Boat("bådbrand", "noget", "sejl", 1999);
+        b2 = new Boat("bådgatti", "andet", "torsk", 1990);
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Boat.deleteAllRows").executeUpdate();
@@ -104,8 +104,7 @@ class BoatRessourceTest {
 
     @Test
     void createBoat() {
-        BoatDTO boatDTO = new BoatDTO("boatbrand", "supermakebåd", "minbåd");
-
+        BoatDTO boatDTO = new BoatDTO("boatbrand", "supermakebåd", "minbåd", 23);
 
         login("admin", "test");
         given()

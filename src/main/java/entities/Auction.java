@@ -1,27 +1,29 @@
 package entities;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 @Entity
-public class Harbour {
+public class Auction {
     private static final long serialVersionUID = 1L;
     @Id
     private long id;
     private String name;
-    private String address;
-    private int capacity;
+    private Date date;
+    private Time time;
 
-    @OneToMany(mappedBy = "harbour")
+    @OneToMany(mappedBy = "auction")
     private List<Boat> boatList;
 
-    public Harbour() {
+    public Auction() {
     }
 
-    public Harbour(long id, String name, String address, int capacity) {
+    public Auction(long id, String name, Date date, Time time) {
         this.id = id;
         this.name = name;
-        this.address = address;
-        this.capacity = capacity;
+        this.date = date;
+        this.time = time;
     }
 
     public long getId() {
@@ -40,19 +42,19 @@ public class Harbour {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public Date getDate() {
+        return date;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public Time getTime() {
+        return time;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setTime(Time time) {
+        this.time = time;
     }
 }

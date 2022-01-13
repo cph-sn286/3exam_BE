@@ -11,6 +11,7 @@ public class BoatDTO {
     private String brand;
     private String make;
     private String name;
+    private int year;
     private String image;
 
 
@@ -19,6 +20,7 @@ public class BoatDTO {
         this.brand = rm.getBrand();
         this.make = rm.getMake();
         this.name = rm.getName();
+        this.year = rm.getYear();
         this.image = rm.getImage();
     }
 
@@ -30,13 +32,23 @@ public class BoatDTO {
         this.brand = boatDTO.getBrand();
         this.make = boatDTO.getMake();
         this.name = boatDTO.getName();
+        this.year = boatDTO.getYear();
 
     }
 
-    public BoatDTO(String brand, String make, String name) {
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public BoatDTO(String brand, String make, String name, int year) {
         this.brand = brand;
         this.make = make;
         this.name = name;
+        this.year = year;
     }
 
     public long getId() {

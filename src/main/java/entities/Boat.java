@@ -15,6 +15,7 @@ public class Boat {
     private String brand;
     private String make;
     private String name;
+    private int year;
     private String image;
 
     @ManyToMany(mappedBy = "boatList")
@@ -22,7 +23,7 @@ public class Boat {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Harbour harbour;
+    private Auction auction;
 
     public Boat() {
     }
@@ -35,10 +36,19 @@ public class Boat {
         this.image = image;
     }
 
-    public Boat(String brand, String make, String name) {
+    public Boat(String brand, String make, String name, int year) {
         this.brand = brand;
         this.make = make;
         this.name = name;
+        this.year = year;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public long getId() {
