@@ -1,7 +1,9 @@
 package facades;
 
 import dtos.AuctionDTO;
+import dtos.BoatDTO;
 import entities.Auction;
+import entities.Boat;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +23,19 @@ public class AuctionFacade {
         TypedQuery<Auction> query = em.createQuery("SELECT p FROM Auction p", Auction.class);
         List<Auction> rms = query.getResultList();
         return AuctionDTO.getDtos(rms);
+    }
+
+    public AuctionDTO create(AuctionDTO pn) {
+        Auction auction = new Auction(pn.getName(), pn.getDate(), pn.getTime(),pn.getLocation());
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(auction);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new AuctionDTO(auction);
     }
 
     public static AuctionFacade getFacadeExample(EntityManagerFactory _emf) {

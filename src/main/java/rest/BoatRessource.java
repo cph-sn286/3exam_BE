@@ -20,7 +20,6 @@ public class BoatRessource {
 
 
         private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-
         private static final BoatFacade FACADE =  BoatFacade.getFacadeExample(EMF);
         private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -62,6 +61,7 @@ public class BoatRessource {
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
+    @RolesAllowed("user")
     public Response updateBoat(@PathParam("id") Long id, String a) {
         BoatDTO boatDto = GSON.fromJson(a, BoatDTO.class);
         boatDto.setId(id);
