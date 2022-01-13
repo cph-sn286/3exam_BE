@@ -36,6 +36,14 @@ public class Boat {
         this.image = image;
     }
 
+    public Boat(long id, String name, String brand, String make, int year) {
+
+    }
+
+    public List<Owner> getOwners() {
+        return ownerList;
+    }
+
     public Boat(String brand, String make, String name, int year) {
         this.brand = brand;
         this.make = make;

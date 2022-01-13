@@ -7,6 +7,7 @@ import facades.FacadeExample;
 import facades.OwnerFacade;
 import utils.EMF_Creator;
 
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -29,6 +30,7 @@ public class OwnerRessource {
     @GET
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
+    @RolesAllowed("user")
     public Response getAll() {
         List<OwnerDTO> rns = FACADE.getAll();
         return Response.ok().entity(GSON.toJson(rns)).build();

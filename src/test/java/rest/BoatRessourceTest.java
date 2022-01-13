@@ -11,6 +11,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
 
+import io.restassured.response.Response;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -95,11 +96,23 @@ class BoatRessourceTest {
 
 
     @Test
-    void getBoatByHarbour() {
+    void getAllAuctions() {
+        Response response = RestAssured.get("http://localhost:8080/SP1_war_exploded/api/auction/all");
+
+        System.out.println(response.getStatusCode());
+        System.out.println(response.asString());
     }
 
     @Test
-    void getOwnersByBoat() {
+    void GetBoatByOwner() {
+        login("user", "test");
+        given()
+                .contentType(ContentType.JSON).header("x-access-token", securityToken)
+                .get("http://localhost:8080/SP1_war_exploded/api/boat/getboatbyowner/kurt")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode());
+
     }
 
     @Test

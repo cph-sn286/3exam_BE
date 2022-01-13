@@ -30,13 +30,7 @@ public class BoatRessource {
             return "{\"msg\":\"Hello World\"}";
         }
 
-    //@GET
-    //@Path("getboatbyharbour/{name}")
-    //@Produces({MediaType.APPLICATION_JSON})
-    //public Response getBoatByHarbour(@PathParam("name") String name) {
-        //List<BoatDTO> rn = FACADE.getBoatByHarbour(name);
-      //  return Response.ok().entity(GSON.toJson(rn)).build();
-    //}
+
 
     @GET
     @Path("getboatbyowner/{name}")
@@ -51,11 +45,22 @@ public class BoatRessource {
     @Path("createboat")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes ({MediaType.APPLICATION_JSON})
-    @RolesAllowed("admin")
+    @RolesAllowed("user")
     public Response createBoat(BoatDTO boatDTO) {
            boatDTO = FACADE.create(boatDTO);
            return Response.ok().entity(GSON.toJson(boatDTO)).build();
 
+    }
+
+    @PUT
+    @Path("{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response updateBoat(@PathParam("id") Long id, String a) {
+        BoatDTO boatDto = GSON.fromJson(a, BoatDTO.class);
+        boatDto.setId(id);
+        BoatDTO result = FACADE.updateBoat(boatDto);
+        return Response.ok().entity(GSON.toJson(result)).build();
     }
 
 

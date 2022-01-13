@@ -8,7 +8,10 @@ import entities.Owner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import javax.ws.rs.WebApplicationException;
 import java.util.List;
+
+import static jdk.internal.org.jline.utils.Colors.h;
 
 public class BoatFacade {
     public BoatFacade() {
@@ -26,21 +29,7 @@ public class BoatFacade {
     }
 
 
-   // public List<BoatDTO> getBoatByOwner(String name) {
-     //   EntityManager em = emf.createEntityManager();
-       // TypedQuery<Boat> query = em.createQuery("SELECT  p FROM Boat p INNER JOIN p.owner h WHERE h.name = :name", Boat.class);
-        //query.setParameter("name", name);
-        //List<Boat> rms = query.getResultList();
-        //return BoatDTO.getDtos(rms);
-   //}
 
-    //public List<OwnerDTO> getOwnersByBoat(String name) {
-      //  EntityManager em = emf.createEntityManager();
-        //TypedQuery<Owner> query = em.createQuery("SELECT  p FROM Owner p INNER JOIN p.boatList h WHERE h.name = :name", Owner.class);
-        //query.setParameter("name", name);
-        //List<Owner> rms = query.getResultList();
-        //return OwnerDTO.getDtos(rms);
-    //}
 
     public List<BoatDTO> getBoatByOwner(String name) {
         EntityManager em = emf.createEntityManager();
@@ -63,5 +52,19 @@ public class BoatFacade {
             em.close();
         }
         return new BoatDTO(boat);
+    }
+
+    public BoatDTO updateBoat(BoatDTO pn) {
+        Boat b = new Boat(pn.getId(), pn.getName(), pn.getBrand(), pn.getMake(),pn.getYear());
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            b = em.merge(b);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new BoatDTO(b);
+
     }
 }

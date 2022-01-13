@@ -28,6 +28,17 @@ public class Owner {
         this.email = email;
     }
 
+    public void addBoat(Boat boat) {
+
+        if (boat != null) {
+            this.boatList.add(boat);
+            boat.getOwners().add(this);
+
+        }
+
+
+    }
+
     public String getEmail() {
         return email;
     }
