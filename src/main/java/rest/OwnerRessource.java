@@ -30,7 +30,6 @@ public class OwnerRessource {
     @GET
     @Path("all")
     @Produces({MediaType.APPLICATION_JSON})
-    @RolesAllowed("user")
     public Response getAll() {
         List<OwnerDTO> rns = FACADE.getAll();
         return Response.ok().entity(GSON.toJson(rns)).build();

@@ -61,7 +61,7 @@ public class BoatRessource {
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    @RolesAllowed("user")
+    @RolesAllowed({"user", "admin"})
     public Response updateBoat(@PathParam("id") Long id, String a) {
         BoatDTO boatDto = GSON.fromJson(a, BoatDTO.class);
         boatDto.setId(id);
