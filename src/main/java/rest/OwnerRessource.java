@@ -38,7 +38,7 @@ public class OwnerRessource {
     @Path("{id}")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    // @RolesAllowed("user")
+    @RolesAllowed("admin")
     public Response updateOwner(@PathParam("id") Long id, String a) {
         OwnerDTO ownerDto = GSON.fromJson(a, OwnerDTO.class);
         ownerDto.setId(id);

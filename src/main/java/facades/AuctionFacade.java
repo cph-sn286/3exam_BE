@@ -1,9 +1,7 @@
 package facades;
 
 import dtos.AuctionDTO;
-import dtos.BoatDTO;
 import entities.Auction;
-import entities.Boat;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,6 +48,19 @@ public class AuctionFacade {
             em.close();
         }
         return new AuctionDTO(a);
+
+    }
+
+    public void deleteAuction(int pn) {
+        EntityManager em = emf.createEntityManager();
+        Auction a = (em.find(Auction.class, (long) pn));
+        try {
+            em.getTransaction().begin();
+            em.remove(a);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
 
     }
 
