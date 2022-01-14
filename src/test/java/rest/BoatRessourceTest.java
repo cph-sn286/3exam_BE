@@ -28,8 +28,7 @@ import java.net.URI;
 
 import static io.restassured.RestAssured.given;
 
-
-class BoatRessourceTest {
+/*class BoatRessourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
@@ -48,7 +47,6 @@ class BoatRessourceTest {
         return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
 
     }
-
     @BeforeAll
     public static void setUpClass() {
         EMF_Creator.startREST_TestWithDB();
@@ -208,4 +206,6 @@ class BoatRessourceTest {
         //System.out.println("TOKEN ---> " + securityToken);
     }
 
-}
+};
+
+ */
