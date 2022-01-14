@@ -122,18 +122,7 @@ class BoatRessourceTest {
 
     }
 
-    @Test
-    void updateBoat () {
-        login("user", "test");
-        given()
-                .contentType(ContentType.JSON).header("x-access-token", securityToken)
-                .put("/boat/1")
-                .then()
-                .assertThat()
-                .statusCode(HttpStatus.OK_200.getStatusCode());
 
-
-    }
     @Test
     void deleteAuctions () {
 
