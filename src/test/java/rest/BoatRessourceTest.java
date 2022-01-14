@@ -34,6 +34,7 @@ class BoatRessourceTest {
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
     private static Boat b1, b2;
+    private static Auction a1, a2;
 
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
@@ -74,13 +75,17 @@ class BoatRessourceTest {
 
     @BeforeEach
     void setUp() {
-
         EntityManager em = emf.createEntityManager();
         b1 = new Boat("bådbrand", "noget", "sejl", 1999);
         b2 = new Boat("bådgatti", "andet", "torsk", 1990);
+        a1 = new Auction("a1", "dqweq", "as", "nu");
+        a2 = new Auction("fix", "fix", "det", "nu");
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Boat.deleteAllRows").executeUpdate();
+            em.createNamedQuery("Auction.deleteAllRows").executeUpdate();
+            em.persist(a1);
+            em.persist(a2);
             em.persist(b1);
             em.persist(b2);
             em.getTransaction().commit();
@@ -119,17 +124,26 @@ class BoatRessourceTest {
 
     @Test
     void updateBoat () {
-        BoatDTO boatDTO = new BoatDTO("dasdasd", "dqweqw", "eqeqw", 2017);
         login("user", "test");
         given()
                 .contentType(ContentType.JSON).header("x-access-token", securityToken)
-                .body(GSON.toJson(boatDTO))
-                .put("/boat/{id}")
+                .put("/boat/1")
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode());
 
 
+    }
+    @Test
+    void deleteAuctions () {
+
+        login("admin", "test");
+        given()
+                .contentType(ContentType.JSON).header("x-access-token", securityToken)
+                .delete("/auction/deleteauction/1")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode());
     }
 
     @Test
