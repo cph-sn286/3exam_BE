@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="devops-starter" />
         <module name="Startcode_Backend" />
+        <module name="3exam_BE" />
         <module name="SP1" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="3exam_BE" options="-endorseddirs &quot;C:\Users\vaksj\OneDrive\Skrivebord\True intent\3exam_BE\target/endorsed&quot;" />
       <module name="SP1" options="-endorseddirs C:\Users\vaksj\OneDrive\Skrivebord\eksamensprojekt\SP1\target/endorsed" />
       <module name="Startcode_Backend" options="-endorseddirs C:\Users\vaksj\OneDrive\Skrivebord\Startcode_Backend\target/endorsed" />
       <module name="devops-starter" options="-endorseddirs &quot;C:\Users\Razer\Documents\School\3 Semester\Security\SecurityDemo\target/endorsed&quot;" />

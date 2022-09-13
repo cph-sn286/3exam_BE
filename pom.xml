@@ -22,7 +22,7 @@
         <remote.server>http://164.90.227.175:8081/manager/text</remote.server>
 
         <!--TODO: add DB name below -->
-
+     
         <db.name>SP6</db.name>
 
     </properties>
